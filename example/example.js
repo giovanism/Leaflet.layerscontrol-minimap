@@ -23,8 +23,15 @@ var baselayers = {
         subdomains: 'abcd',
         minZoom: 3,
         maxZoom: 16
+    }),
+
+    'GoogleMutant': L.gridLayer.googleMutant({
+        type: 'roadmap',
+        maxZoom: 16
     })
 };
+
+baselayers['GoogleMutant'].addGoogleLayer('TrafficLayer');
 
 var overlays = {
     'Polygon': L.polygon(

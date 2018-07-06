@@ -248,6 +248,10 @@ function cloneLayer (layer) {
     }
 
     // Tile layers
+    if (layer instanceof L.GridLayer.GoogleMutant) {
+        return L.gridLayer.googleMutant(options);
+    }
+
     if (layer instanceof L.TileLayer) {
         return L.tileLayer(layer._url, options);
     }
