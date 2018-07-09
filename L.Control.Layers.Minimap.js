@@ -249,7 +249,19 @@ function cloneLayer (layer) {
 
     // Tile layers
     if (layer instanceof L.GridLayer.GoogleMutant) {
-        return L.gridLayer.googleMutant(options);
+        let googleLayer = L.gridLayer.googleMutant(options);
+
+        layer._GAPIPromise.then(function () {
+            let subLayers = Object.keys(layer._subLayers); 
+            console.log(subLayers);
+     
+            for(var i in subLayers) {
+                console.log(subLayers[i]);
+                googleLayer.addGoogleLayer(subLayers[i]);
+            }
+        });
+
+        return googleLayer;
     }
 
     if (layer instanceof L.TileLayer) {
